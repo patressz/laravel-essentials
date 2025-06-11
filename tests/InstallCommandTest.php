@@ -2,12 +2,14 @@
 
 use Patressz\Essentials\Enums\ConfigureOption;
 
-it('installs essentials and configures the application correctly', function () {
+beforeEach(function () {
     $appServiceProviderPath = app_path('Providers/AppServiceProvider.php');
     $fixtureStubPath = __DIR__.'/Fixtures/AppServiceProvider.stub';
 
     copy($fixtureStubPath, $appServiceProviderPath);
+});
 
+it('installs essentials and configures the application correctly', function () {
     $configurableOptions = collect(ConfigureOption::cases())
         ->mapWithKeys(fn (ConfigureOption $option) => [$option->value => $option->getLabel()])
         ->toArray();
