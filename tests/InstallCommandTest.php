@@ -28,6 +28,6 @@ it('installs essentials and configures the application correctly', function () {
 
     $expectedContent = file_get_contents(app_path('Providers/AppServiceProvider.php'));
 
-    // expect($expectedContent)
-    //     ->toMatchSnapshot();
+    expect($expectedContent)
+        ->toMatchSnapshot();
 });
