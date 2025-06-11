@@ -1,6 +1,7 @@
 {
     "name": "patressz/laravel-essentials",
     "description": "Patressz Essentials",
+    "type": "library",
     "keywords": [
         "laravel",
         "essentials",
