@@ -103,10 +103,8 @@ class InstallCommand extends Command
         $rectorConfigPath = __DIR__.'/../rector.php';
 
         Process::fromShellCommandline(
-            "SELECTED_OPTIONS=\"{$selectedOptionsString}\" vendor/bin/rector process {$serviceProviderPath} --config {$rectorConfigPath} --clear-cache --debug"
-        )->run(function (string $type, string $output) {
-            $this->output->write($output);
-        });
+            "SELECTED_OPTIONS=\"{$selectedOptionsString}\" vendor/bin/rector process {$serviceProviderPath} --config {$rectorConfigPath} --clear-cache"
+        )->run();
 
         if (! file_exists('vendor/bin/pint')) {
             return;
