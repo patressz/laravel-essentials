@@ -37,8 +37,6 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
         'configureAssetPrefetching' => 'Configure asset prefetching.',
     ];
 
-    private ?array $selectedOptions = null;
-
     public function getNodeTypes(): array
     {
         return [Class_::class];
@@ -56,9 +54,9 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
             return null;
         }
 
-        $this->selectedOptions = explode(',', $_ENV['SELECTED_OPTIONS']);
+        $selectedOptions = explode(',', $_ENV['SELECTED_OPTIONS']);
 
-        foreach ($this->selectedOptions as $method) {
+        foreach ($selectedOptions as $method) {
             $methodName = ConfigureOption::from($method)->getConfigurationMethod();
 
             $this->addMethodCallToBootMethod($node, $bootMethod, $methodName);
