@@ -59,27 +59,17 @@ After installation, you can use these commands for code quality:
 
 🧹 **Code Style Fixing with Pint**:
 ```bash
-composer lint
+./vendor/bin/pint
 ```
 
 ⚗️ **Static Analysis with PHPStan**:
 ```bash
-composer test:types
+./vendor/bin/phpstan
 ```
 
 🔧 **Code Refactoring with Rector**:
 ```bash
-composer refactor
-```
-
-✅ **Unit Testing with PEST**:
-```bash
-composer test:unit
-```
-
-🚀 **Run the entire test suite**:
-```bash
-composer test
+./vendor/bin/rector
 ```
 
 ## Configuration Files
