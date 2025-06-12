@@ -192,16 +192,6 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
             new StaticCall(
                 new Name('\Illuminate\Database\Eloquent\Model'),
                 new Identifier('automaticallyEagerLoadRelationships'),
-                [
-                    new Arg(
-                        new BooleanNot(
-                            new MethodCall(
-                                new FuncCall(new Name('app')),
-                                new Identifier('isProduction')
-                            )
-                        )
-                    ),
-                ]
             )
         );
 
@@ -216,9 +206,11 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
                 new Identifier('prohibitDestructiveCommands'),
                 [
                     new Arg(
-                        new MethodCall(
-                            new FuncCall(new Name('app')),
-                            new Identifier('isProduction')
+                        new BooleanNot(
+                            new MethodCall(
+                                new FuncCall(new Name('app')),
+                                new Identifier('isProduction')
+                            )
                         )
                     ),
                 ]
