@@ -162,9 +162,11 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
                 new Identifier('shouldBeStrict'),
                 [
                     new Arg(
-                        new MethodCall(
-                            new FuncCall(new Name('app')),
-                            new Identifier('isProduction')
+                        new BooleanNot(
+                            new MethodCall(
+                                new FuncCall(new Name('app')),
+                                new Identifier('isProduction')
+                            )
                         )
                     ),
                 ]
@@ -206,11 +208,9 @@ final class AppServiceProviderConfigurationRector extends AbstractRector
                 new Identifier('prohibitDestructiveCommands'),
                 [
                     new Arg(
-                        new BooleanNot(
-                            new MethodCall(
-                                new FuncCall(new Name('app')),
-                                new Identifier('isProduction')
-                            )
+                        new MethodCall(
+                            new FuncCall(new Name('app')),
+                            new Identifier('isProduction')
                         )
                     ),
                 ]
