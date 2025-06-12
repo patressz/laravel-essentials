@@ -29,12 +29,11 @@ class InstallCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle(): void
+    public function handle()
     {
         $this->installOrConfigurePackages();
-        $this->configureServiceProvider();
 
-        $this->components->info('Installation and configuration completed successfully!');
+        return $this->configureServiceProvider();
     }
 
     /**
@@ -71,12 +70,12 @@ class InstallCommand extends Command
     /**
      * Configures the AppServiceProvider with basic configuration methods.
      */
-    private function configureServiceProvider(): void
+    private function configureServiceProvider(): int
     {
         $ask = confirm('Do you want to add basic configuration methods to the AppServiceProvider?', true);
 
         if (! $ask) {
-            return;
+            return 0;
         }
 
         $serviceProviderPath = app_path('Providers/AppServiceProvider.php');
@@ -84,7 +83,7 @@ class InstallCommand extends Command
         if (! file_exists($serviceProviderPath)) {
             $this->components->error('AppServiceProvider.php not found. Please create it first.');
 
-            return;
+            return 1;
         }
 
         $configurableOptions = collect(ConfigureOption::cases())
@@ -107,12 +106,16 @@ class InstallCommand extends Command
         )->run();
 
         if (! file_exists('vendor/bin/pint')) {
-            return;
+            return 0;
         }
 
         Process::fromShellCommandline(
             "vendor/bin/pint {$serviceProviderPath}"
         )->run();
+
+        $this->components->info('Installation and configuration completed successfully!');
+
+        return 0;
     }
 
     /**
