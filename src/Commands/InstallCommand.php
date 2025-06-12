@@ -98,7 +98,7 @@ class InstallCommand extends Command
             required: true
         );
 
-        $selectedOptionsString = implode(',', array_keys($selectedOptions));
+        $selectedOptionsString = implode(',', array_values($selectedOptions));
 
         $rectorConfigPath = __DIR__.'/../rector.php';
 
