@@ -113,6 +113,14 @@ class InstallCommand extends Command
             "vendor/bin/pint {$serviceProviderPath}"
         )->run();
 
+        $askToUninstallEssentialsPackage = confirm('Do you want to uninstall the `patressz/laravel-essentials` package now?', true);
+
+        if ($askToUninstallEssentialsPackage) {
+            Process::fromShellCommandline(
+                'composer remove patressz/laravel-essentials --dev --no-interaction'
+            )->run();
+        }
+
         $this->components->info('Installation and configuration completed successfully!');
 
         return 0;
