@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.2.0 - 2025-11-27
+
+feat: add option to uninstall `patressz/laravel-essentials` package after installation of all necessary packages
+
+**Full Changelog**: https://github.com/patressz/laravel-essentials/compare/0.1.7...0.2.0
+
 ## 0.1.7 - 2025-06-12
 
 fix: remove `phpstan-baseline.neon` from `phpstan` stub (880fbf1b7467180bd7d94e3afb48bf544765dc35)
